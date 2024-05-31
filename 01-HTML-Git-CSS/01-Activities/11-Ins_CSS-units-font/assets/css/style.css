@@ -1,0 +1,34 @@
+.box {
+  width: 200px;
+  height: 100px;
+  /* Font-family property specifies a list of fonts to be used in order of priority */
+  "Lucida Sans Unicode", "Lucida Grande", sans-serif
+}
+
+.section-blue {
+  /* Line-height property sets the distance between lines of text */
+  line-height: 100px;
+  color: #ffa500;
+  background-color: #0000FF;
+  font-family: "sans-serif, cursive;
+
+}
+  
+.container {
+  font-family: "Lucida Console", Monaco, monospace;
+  color: white;
+  background-color: black;
+  font-family: "sans-serif, cursive;
+
+}
+
+#section-1 {
+  /* Font-size property sets the size of a font */
+  font-size: 26px;
+  color: #ffff00;
+  background-color: #800080;
+}
+
+#section-6 {
+  color: #ffff00;
+}

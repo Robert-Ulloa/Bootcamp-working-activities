@@ -1,0 +1,50 @@
+/* Resetting default browser styles */
+:root{
+    --background: #333940; 
+    --purplefont: #E867ED; 
+    --lightfont: #E0E8E1;
+    --darkgrad: #6E4877;
+    --light-grad: #9D55A4;
+/
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Global styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--background);
+    color: var(--lightfont);
+}
+
+/* Header styles */
+header {
+    background-color: #333;
+    color: var(--lightfont);
+    padding: 10px 0;
+    text-align: center;
+}
+
+/* Navigation styles */
+nav {
+    background-color: #444;
+    color: #fff;
+    padding: 5px;
+}
+
+/* Main content styles */
+main {
+    padding: 20px;
+}
+
+/* Footer styles */
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+}
