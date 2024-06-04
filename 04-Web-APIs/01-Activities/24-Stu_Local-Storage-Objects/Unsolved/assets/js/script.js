@@ -8,6 +8,14 @@ signUpButton.addEventListener('click', function (event) {
   event.preventDefault();
 
   // TODO: Create user object from submission
+    const studentInfo = {
+      firstName: firstNameInput.value,
+      lastName: lastNameInput.value,
+      email: emailInput.value,
+      password: passwordInput.value,
+    };
 
   // TODO: Set new submission to local storage
+  localStorage.setItem('studentInfo', JSON.stringify(studentInfo));
+  renderMessage();
 });
