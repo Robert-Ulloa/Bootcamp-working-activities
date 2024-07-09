@@ -4,8 +4,9 @@ const limitWarningEl = document.querySelector('#limit-warning');
 
 const getRepoName = function () {
   // Where is this value coming from?
-  // TODO: Write your answer here
+  // is derived from the current URL's query string
   const queryString = document.location.search;
+  // document.location.href === "https://127.0.01:5500/simgle-repo.html?repo=something"
   const repoName = queryString.split('=')[1];
 
   if (repoName) {
@@ -28,7 +29,7 @@ const getRepoIssues = function (repo) {
         displayIssues(data);
 
         // What is this checking for? Under what condition will this be `true`?
-        // TODO: Write your answer here
+        // if the repo name doesnt exist in the server side API it will display issues
         if (response.headers.get('Link')) {
           displayWarning(repo);
         }
@@ -41,7 +42,7 @@ const getRepoIssues = function (repo) {
 
 const displayIssues = function (issues) {
   // Is there a difference between this and `!issues.length`?
-  // TODO: Write your answer here
+  // 
   if (issues.length === 0) {
     issueContainerEl.textContent = 'This repo has no open issues!';
     return;

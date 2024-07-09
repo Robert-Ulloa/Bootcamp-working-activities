@@ -5,7 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <!-- Why does the `<link>` to `style.css` have to come last? -->
+  <!-- Why does the `<link>` to `style.css` have to come last?
+   ensures that your CSS rules will overwrite any conflicting styles from the linked external stylesheets -->
   <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,400i,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
   <link rel="stylesheet" href="./assets/css/style.css" />
@@ -15,7 +16,8 @@
 <body class="flex-column min-100-vh">
   <header class="hero">
     <h1 class="app-title">
-      <!-- TODO: What does this `<i>` element do? Where do these classes come from? -->
+      <!--: What does this `<i>` element do? Where do these classes come from?
+            using the i tag as a container for font awesome-->
       <i class="fab fa-github"></i> Git it Done!
     </h1>
     <p>Search for a GitHub user or click on a language to see a list of repositories and how many open issues they have!
