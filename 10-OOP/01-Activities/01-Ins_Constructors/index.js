@@ -17,6 +17,16 @@ function Dog(name, age, breed) {
 
 // Sets the variable "dog" to a Dog object and initializes with name, age, and breed properties
 const dog = new Dog('Rex', 2, 'Bulldog');
+const dog2 =new Dog( 'rex',2, 'Husky'); 
 
 // Calling dog's nap method
 dog.nap();
+
+// WHAT JS IS ACTUALLY DOING WITH THE new KEYWORD:
+//function myNew(){
+//  let newObj = {};
+//  newObj.constructor = Dog;
+//  newObj.constructor('rex', 2, 'bulldog');
+ // return newObj;
+//}
+
