@@ -1,5 +1,5 @@
 // A constructor Arithmetic is created.
-function Arithmetic() {}
+function Arithmetic() {};
 
 // Constructor Arithmetic is given a sum method that returns two numbers added together.
 Arithmetic.prototype.sum = (a, b) => {

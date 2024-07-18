@@ -10,5 +10,6 @@ describe('Arithmetic', () => {
       const arithmetic = new Arithmetic();
       expect(arithmetic.modulus(2, 2)).toEqual(total);
     });
+    
   });
 });
