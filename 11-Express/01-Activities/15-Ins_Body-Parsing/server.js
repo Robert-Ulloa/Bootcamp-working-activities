@@ -42,5 +42,5 @@ app.post('/api/reviews', (req, res) => {
 });
 
 app.listen(PORT, () =>
-  console.log(`Express server listening on port ${PORT}!`)
+  console.log(`Express server listening on port http://localhost:${PORT}`)
 );

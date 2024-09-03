@@ -13,6 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api', api);
 
 app.use(express.static('public'));
+app.use(clog); // Apply the logging middleware
 
 // GET Route for homepage
 app.get('/', (req, res) =>

@@ -1,7 +1,6 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
-// Helper method for generating unique ids
 const uuid = require('./helpers/uuid');
 
 const PORT = 3001;
@@ -13,30 +12,44 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static('public'));
 
+// Utility function to read reviews from the JSON file
+const readReviews = () => {
+  try {
+    const data = fs.readFileSync('./db/reviews.json', 'utf8');
+    return JSON.parse(data);
+  } catch (error) {
+    console.error('Error reading reviews:', error);
+    return [];
+  }
+};
+
+// Utility function to write reviews to the JSON file
+const writeReviews = (reviews) => {
+  try {
+    fs.writeFileSync('./db/reviews.json', JSON.stringify(reviews, null, 2));
+  } catch (error) {
+    console.error('Error writing reviews:', error);
+  }
+};
+
 app.get('/', (req, res) =>
   res.sendFile(path.join(__dirname, '/public/index.html'))
 );
 
 // GET request for reviews
 app.get('/api/reviews', (req, res) => {
-  // Send a message to the client
-  res.json(`${req.method} request received to get reviews`);
-
-  // Log our request to the terminal
+  const reviews = readReviews();
+  res.json(reviews);
   console.info(`${req.method} request received to get reviews`);
 });
 
 // POST request to add a review
 app.post('/api/reviews', (req, res) => {
-  // Log that a POST request was received
   console.info(`${req.method} request received to add a review`);
 
-  // Destructuring assignment for the items in req.body
   const { product, review, username } = req.body;
 
-  // If all the required properties are present
   if (product && review && username) {
-    // Variable for the object we will save
     const newReview = {
       product,
       review,
@@ -45,17 +58,10 @@ app.post('/api/reviews', (req, res) => {
       review_id: uuid(),
     };
 
-    // Convert the data to a string so we can save it
-    const reviewString = JSON.stringify(newReview);
-
-    // Write the string to a file
-    fs.writeFile(`./db/${newReview.product}.json`, reviewString, (err) =>
-      err
-        ? console.error(err)
-        : console.log(
-            `Review for ${newReview.product} has been written to JSON file`
-          )
-    );
+    // Read existing reviews, append the new one, and write back to the file
+    const reviews = readReviews();
+    reviews.push(newReview);
+    writeReviews(reviews);
 
     const response = {
       status: 'success',
