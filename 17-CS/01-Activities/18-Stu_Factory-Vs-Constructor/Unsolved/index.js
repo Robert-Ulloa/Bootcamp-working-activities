@@ -1,13 +1,18 @@
 // TODO: Refactor the class to a factory function.
-class Lesson {
-  constructor() {
-    this.title = 'Module 17 - Computer Science';
-    this.description = 'CS for JS';
-  }
-  information() {
-    console.log(this.title, this.description);
-  }
+
+//factory function for creating Lesson objects
+function createLesson(title, description) {
+  let lessonTitle = title;
+  let lessonDescription = description;
+
+  //public methods are exposed via the returned object
+  return {
+    information() {
+      console.log(lessonTitle, lessonDescription);
+    }
+  };
 }
 
-const csForJS = new Lesson();
+//create an instance of a Lesson using the factory function
+const csForJS = createLesson('Module 17 - Computer Science', 'CS for JS');
 csForJS.information();
