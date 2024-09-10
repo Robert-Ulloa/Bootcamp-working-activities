@@ -8,17 +8,18 @@ function binarySearch(array, element) {
   while (start <= end) {
     let mid = Math.floor((start + end) / 2);
 
+    // Check if the element is present at mid
     if (array[mid] === element) {
-      return;
+      return mid; // return the index if element is founf
     } else if (array[mid] < element) {
-      start = mid + 1;
+      start = mid + 1; // if the element is greater, ignored left half
     } else {
-      end = mid - 1;
+      end = mid - 1; // if element is smaller, ignore right half
     }
   }
-  return;
+  return -1; // retunr -1 if the element is not found
 }
 
-console.log(binarySearch(arr, 7));
+console.log(binarySearch(arr, 7)); // testing to see if it returns the correct index
 
 module.exports = binarySearch;
