@@ -57,9 +57,21 @@ app.delete('/genres/:name', async (req, res) => {
 });
 
 app.put('/genres/:name', async (req, res) => {
-  // TODO: Write a route that finds the first document that matches the specified route parameter
-  // and updates it using the name provided in the request body.
-  // Return the updated document
+  try {
+    const updateGenre = await Genre.findOneAndUpdate(
+      {name: req.params.name },
+      {$set: {name: req.body.name}},
+      {new: true}
+    );
+    if (!updateGenre) {
+      return res.status(404).json({message: 'Genre not found'});
+    }
+
+    res.status(200).json(updateGenre);
+  } catch(err) {
+    console.log('Uh Oh, something went wrong');
+    res.status(500).json({message: 'Internal Server Error'})
+  }
 });
 
 db.once('open', () => {

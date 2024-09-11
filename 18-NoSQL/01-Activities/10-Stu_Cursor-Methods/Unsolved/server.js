@@ -50,6 +50,12 @@ app.use(express.json());
 app.get('/numbers', (req, res) => {
   db.collection('numberList')
     .find()
+    //sort doc by the 'number' field in descending order
+    .sort({ number: -1 })
+    //skip the first 5 docs
+    .skip(5)
+    //limit the results to 5 docs
+    .limit(5)
     .toArray()
     .then(results => res.send(results))
     .catch(err => {
