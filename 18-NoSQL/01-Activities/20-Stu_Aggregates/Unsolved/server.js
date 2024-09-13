@@ -23,6 +23,9 @@ app.get('/books/sum-price', async (req, res) => {
     const result = await Book
       .aggregate([
         {
+          $match: { inStock: true}
+        },
+        {
           $group: {
             _id: null,
             sum_price: { $sum: '$price' },

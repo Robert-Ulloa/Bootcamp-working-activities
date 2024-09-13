@@ -23,8 +23,10 @@ module.exports = {
     }
   },
   // TODO: Add comments to the functionality of the createApplication method
+  //retriev a single application by its id
   async createApplication(req, res) {
     try {
+      //find a single appplicaction based on the provided applicationId
       const application = await Application.create(req.body);
       const user = await User.findOneAndUpdate(
         { _id: req.body.userId },
@@ -45,8 +47,10 @@ module.exports = {
     }
   },
   // TODO: Add comments to the functionality of the updateApplication method
+  //Create a new application as a JSON response
   async updateApplication(req, res) {
     try {
+      // create a new application and associate it whith a user
       const application = await Application.findOneAndUpdate(
         { _id: req.params.applicationId },
         { $set: req.body },
@@ -64,6 +68,8 @@ module.exports = {
     }
   },
   // TODO: Add comments to the functionality of the deleteApplication method
+    // Delete an application by its ID
+
   async deleteApplication(req, res) {
     try {
       const application = await Application.findOneAndRemove({ _id: req.params.applicationId });
@@ -90,6 +96,8 @@ module.exports = {
     }
   },
   // TODO: Add comments to the functionality of the addTag method
+    // Add a tag to an application by its ID
+
   async addTag(req, res) {
     try {
       const application = await Application.findOneAndUpdate(
@@ -108,6 +116,8 @@ module.exports = {
     }
   },
   // TODO: Add comments to the functionality of the addTag method
+    // Remove a tag from an application by its ID
+
   async removeTag(req, res) {
     try {
       const application = await Application.findOneAndUpdate(

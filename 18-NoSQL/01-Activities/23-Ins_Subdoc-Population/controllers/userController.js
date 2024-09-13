@@ -1,4 +1,6 @@
 const User = require('../models/User');
+const { ObjectId } = require('mongoose');
+
 
 module.exports = {
   async getUsers(req, res) {
@@ -11,7 +13,7 @@ module.exports = {
   },
   async getSingleUser(req, res) {
     try {
-      const user = await User.findOne({ _id: req.params.userId })
+      const user = await User.findOne({ _id: ObjectId(req.params.userId)  })
         .select('-__v')
         .populate('posts');
 

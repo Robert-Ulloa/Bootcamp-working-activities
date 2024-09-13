@@ -1,4 +1,5 @@
 const { Post, User } = require('../models');
+const { ObjectId } = require('mongoose');
 
 module.exports = {
   async getPosts(req, res) {
@@ -11,7 +12,7 @@ module.exports = {
   },
   async getSinglePost(req, res) {
     try {
-      const post = await Post.findOne({ _id: req.params.postId });
+      const post = await Post.findOne({ _id: ObjectId(req.params.postId) });
 
       if (!post) {
         return res.status(404).json({ message: 'No post with that ID' });
