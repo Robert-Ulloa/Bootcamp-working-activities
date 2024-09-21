@@ -21,9 +21,21 @@ module.exports = () => {
 
       new GenerateSW(),
       new WebpackPwaManifest({
-        // TODO: Create a manifest.json:
+        name: 'TODOs List',
+        short_name: 'TODOs',
+        description: 'Manage your TODOs',
+        background_color: '#ffffff',
+        theme_color: '#ffffff',
+        start_url: './',
+        display: 'standalone',
+        icons: [
+          {
+            src: path.resolve('assets/icons/icon-512x512.png'), // This is where the error occurred
+            sizes: [96, 128, 192, 256, 384, 512], // multiple sizes for different devices
+            destination: path.join('assets', "icons"),
+          },
+        ],
       }),
-     
     ],
 
     module: {

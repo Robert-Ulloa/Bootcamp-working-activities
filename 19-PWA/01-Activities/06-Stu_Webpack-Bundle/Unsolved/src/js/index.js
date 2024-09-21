@@ -1,9 +1,12 @@
 import { boxClick } from './box';
-import { headerClick } from './header';
 import '../css/style.css';
-// TODO: Import yellow robot image as 'Yellow'
+import yellow from '../images/yellow-robot.png';
 
-document.getElementById('boxBtn').addEventListener('click', boxClick);
-document.getElementById('headerBtn').addEventListener('click', headerClick);
+// Set up the box element with the initial yellow image
+const box = document.getElementById('box');
+box.src = yellow;
 
-// TODO: Set src of #box element to Yellow
+// Add event listener for the button
+document.getElementById('boxBtn').addEventListener('click', () => {
+  boxClick(box);
+});

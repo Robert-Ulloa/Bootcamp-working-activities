@@ -10,6 +10,11 @@ Click on "Expand View" to get more information about the metrics. Make note of t
 
 * (include as many bullet points as necessary)
 
+* Performance: 84
+* Accesibility: 91
+* Best practice: 100
+* SEO: 90 
+
 ## PWA optimizations
 
 Scroll down the audit report until you see the `PWA` section that lists the PWA optimizations. Make note of the various aspects of a PWA below (the first one is done for you):
