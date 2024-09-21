@@ -1,13 +1,27 @@
 {
   "name": "Contact",
+  "version": "1.0.0",
   "scripts": {
-    "dev": "",
-    "build": "",
-    "start": ""
+    "start": "webpack serve --open",
+    "build": "webpack --mode production"
   },
   "author": "2U",
   "license": "UNLICENSED",
+  "dependencies": {
+    "idb": "^6.1.3",
+    "workbox-window": "^6.6.0"
+  },
   "devDependencies": {
-    "@babel/plugin-proposal-object-rest-spread": "^7.20.7"
+    "@babel/core": "^7.16.5",
+    "@babel/plugin-proposal-object-rest-spread": "^7.20.7",
+    "@babel/preset-env": "^7.16.5",
+    "babel-loader": "^8.2.3",
+    "clean-webpack-plugin": "^4.0.0",
+    "css-loader": "^6.5.1",
+    "html-webpack-plugin": "^5.5.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.64.4",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.7.1"
   }
 }

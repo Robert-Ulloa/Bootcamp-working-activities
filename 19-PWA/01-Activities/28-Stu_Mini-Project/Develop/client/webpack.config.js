@@ -1,4 +1,7 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin'); 
 
 module.exports = () => {
   return {
@@ -8,20 +11,29 @@ module.exports = () => {
       install: './src/js/install.js',
       cards: './src/js/cards.js'
     },
-
-    // TODO: Add the correct output
     output: {
-      
+      filename: '[name].bundle.js',
+      path: path.resolve(__dirname, 'dist'),
     },
-
-    // TODO: Add the correct plugins
     plugins: [
-     
+      new CleanWebpackPlugin(),
+      new HtmlWebpackPlugin({
+        template: './index.html',
+        title: 'Contact Directory',
+      }),
+      new CopyWebpackPlugin({
+        patterns: [
+          { from: './src-sw.js', to: './' } 
+        ],
+      }),
     ],
-
-    // TODO: Add the correct modules
     module: {
-
-    }
+      rules: [
+        {
+          test: /\.css$/i,
+          use: ['style-loader', 'css-loader'],
+        },
+      ],
+    },
   };
 };
