@@ -8,7 +8,7 @@
         "start": "node server.js"
     },
     "keywords": [],
-    "author": "Your Name",
+    "author": "Roberto Ulloa",
     "license": "ISC",
     "dependencies": {
         "express": "^4.17.1"
