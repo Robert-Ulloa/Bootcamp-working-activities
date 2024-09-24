@@ -1,14 +1,21 @@
-// Here we import the Header.css file to grant access to some additional classNames
 import '../styles/Header.css';
 
-// TODO: Create a styles object called "styles"
+// Create a styles object
+const styles = {
+  header: {
+    backgroundColor: 'green', 
+    padding: '15px', 
+  },
+  title: {
+    color: 'white', 
+    fontSize: '36px', 
+  },
+};
 
 function Header() {
-  // TODO: Add a style attribute to header and the h1 element
-
   return (
-    <header className="header">
-      <h1>Welcome</h1>
+    <header style={styles.header}>
+      <h1 style={styles.title}>Welcome</h1>
     </header>
   );
 }

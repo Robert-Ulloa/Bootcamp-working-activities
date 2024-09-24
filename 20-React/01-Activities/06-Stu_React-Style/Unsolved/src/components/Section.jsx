@@ -2,13 +2,32 @@
 import '../styles/Section.css';
 
 // TODO: Create a styles object called "styles"
+const styles = {
+  section: {
+    backgroundColor: '#e8eaf6',
+    padding: '20px',
+    borderRadius: '8px',
+  },
+  heading: {
+    color: '#3f51b5',
+    fontSize: '1.5rem',
+    marginBottom: '20px',
+  },
+  paragraph: {
+    fontSize: '1rem',
+    lineHeight: '1.6',
+    marginBottom: '20px',
+    color: '#333',
+  },
+};
+
 
 function Section() {
   // TODO: Add a style attribute to `section`
   return (
-    <section className="section">
-      <h2>Lorem Ipsum Dolor Sit Amet</h2>
-      <p>
+    <section style={StyleSheet.section} >
+      <h2 style={styles.heading}>Lorem Ipsum Dolor Sit Amet</h2>
+      <p style={styles.paragraph}>
         Sed ut perspiciatis unde omnis iste natus error sit voluptatem
         accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
         illo inventore veritatis et quasi architecto beatae vitae dicta sunt
@@ -23,7 +42,7 @@ function Section() {
         quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo
         voluptas nulla pariatur?
       </p>
-      <p>
+      <p style={styles.paragraph}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
         veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
@@ -32,7 +51,7 @@ function Section() {
         occaecat cupidatat non proident, sunt in culpa qui officia deserunt
         mollit anim id est laborum.
       </p>
-      <p>
+      <p style={styles.paragraph}>
         At vero eos et accusamus et iusto odio dignissimos ducimus qui
         blanditiis praesentium voluptatum deleniti atque corrupti quos dolores
         et quas molestias excepturi sint occaecati cupiditate non provident,
