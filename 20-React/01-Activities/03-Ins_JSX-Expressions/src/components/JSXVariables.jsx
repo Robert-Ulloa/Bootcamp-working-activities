@@ -9,7 +9,7 @@ function JSXVariables() {
         <div className="p-5 mb-4 bg-light">
           {/* JavaScript expressions can be escaped inside of curly braces */}
 
-          <h2>My cat's name is {name}. But you can call me...</h2>
+          <h2>My cat`s name is {name}. But you can call me...</h2>
           <h1>The JSX Boss!</h1>
           <hr />
           <h2>I can do math: {num1 + num2}.</h2>
