@@ -9,7 +9,10 @@ const feline = {
 export default function Display() {
   return (
     <div>
-      <Card name={feline.name} description={feline.description} id={feline.id}/>
+      <Card 
+      name={feline.name} 
+      description={feline.description} 
+      id={feline.id}/>
     </div>
   );
 }

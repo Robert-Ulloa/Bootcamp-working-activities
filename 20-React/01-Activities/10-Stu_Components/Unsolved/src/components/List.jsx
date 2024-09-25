@@ -5,7 +5,9 @@ function List(props) {
       {props.groceries.map((item) => {
         return (
           // TODO: Your code here
-          <li></li>
+          <li key={item.id} className="list-group-item">
+              {item.name}
+          </li>
         );
       })}
     </ul>
