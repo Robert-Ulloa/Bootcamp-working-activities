@@ -37,17 +37,14 @@ connection.once('open', async () => {
     });
   }
 
-  // Add students to the collection and await the results
   const studentData = await Student.create(students);
 
-  // Add courses to the collection and await the results
   await Course.create({
     courseName: 'UCLA',
     inPerson: false,
     students: [...studentData.map(({_id}) => _id)],
   });
 
-  // Log out the seed data to indicate what should appear in the database
   console.table(students);
   console.info('Seeding complete! 🌱');
   process.exit(0);

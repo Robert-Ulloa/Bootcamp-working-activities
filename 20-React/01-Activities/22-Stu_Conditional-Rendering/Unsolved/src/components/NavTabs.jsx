@@ -1,4 +1,5 @@
 // TODO: Add a comment explaining how we are able to extract the key value pairs from props
+//extracting the currentPage and handlePageChange from the props object
 
 function NavTabs({ currentPage, handlePageChange }) {
   return (

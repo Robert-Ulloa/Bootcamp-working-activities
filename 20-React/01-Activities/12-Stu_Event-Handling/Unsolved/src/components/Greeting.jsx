@@ -10,19 +10,19 @@ function Greeting() {
       <div className="list-group">
         {/* TODO: Resolve the issue so that the welcomeStudent function properly alerts the name of the selected student when the button is clicked. */}
         <button 
-          onClick={welcomeStudent('Mary')} 
+          onClick={ () => welcomeStudent('Mary')} 
           className="list-group-item list-group-item-action"
         >
             Mary
         </button>
         <button 
-          onClick={welcomeStudent('Cole')} 
+          onClick={ () => welcomeStudent('Cole')} 
           className="list-group-item list-group-item-action"
         >
             Cole
         </button>
         <button 
-          onClick={welcomeStudent('Rebecca')} 
+          onClick={ () => welcomeStudent('Rebecca')} 
           className="list-group-item list-group-item-action"
         >
             Rebecca

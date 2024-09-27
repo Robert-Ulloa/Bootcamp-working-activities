@@ -6,11 +6,9 @@ import { checkPassword, validateEmail } from '../../utils/helpers';
 
 function Form() {
   // Create state variables for the fields in the form
-  // We are also setting their initial values to an empty string
   const [email, setEmail] = useState('');
   const [userName, setUserName] = useState('');
-  // TODO: Create a password variable and a function "setPassword" using useState
-
+  const [password, setPassword] = useState(''); // Create a state variable for password
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleInputChange = (e) => {
@@ -19,39 +17,35 @@ function Form() {
     const inputType = target.name;
     const inputValue = target.value;
 
-    // Based on the input type, we set the state of either email, username, and password
-    // TODO: Add an else statement to the end that will set the password to the value of 'inputValue'
-
+    // Based on the input type, set the state of either email, username, or password
     if (inputType === 'email') {
       setEmail(inputValue);
     } else if (inputType === 'userName') {
       setUserName(inputValue);
+    } else if (inputType === 'password') {
+      setPassword(inputValue); // Set password state when the password input changes
     }
   };
 
   const handleFormSubmit = (e) => {
-    // Preventing the default behavior of the form submit (which is to refresh the page)
+    // Preventing the default behavior of the form submit
     e.preventDefault();
 
-    // First we check to see if the email is not valid or if the userName is empty. If so we set an error message to be displayed on the page.
+    // Check if email is not valid or if the username is empty
     if (!validateEmail(email) || !userName) {
       setErrorMessage('Email or username is invalid');
-      // We want to exit out of this code block if something is wrong so that the user can correct it
       return;
-      // Then we check to see if the password is not valid. If so, we set an error message regarding the password.
     }
+    // Check if password is not valid
     if (!checkPassword(password)) {
-      setErrorMessage(
-        `Choose a more secure password for the account: ${userName}`
-      );
+      setErrorMessage(`Choose a more secure password for the account: ${userName}`);
       return;
     }
 
-    // If successful, we want to clear out the input after registration.
+    // If successful, clear out the input after registration
     setUserName('');
-    // TODO: Set the password back to an empty string after the user clicks submit
-
     setEmail('');
+    setPassword(''); // Set the password back to an empty string
     alert(`Hello ${userName}`);
   };
 
@@ -73,11 +67,15 @@ function Form() {
           type="text"
           placeholder="username"
         />
-        {/* TODO Add another input field with a value, name, type, and placeholder of "password" */}
-        {/* TODO Add a `onChange` attribute with a value of `handleInputChange` */}
-        <button type="submit">
-          Submit
-        </button>
+        {/* Password input field */}
+        <input
+          value={password}
+          name="password"
+          onChange={handleInputChange}
+          type="password"
+          placeholder="password"
+        />
+        <button type="submit">Submit</button>
       </form>
       {errorMessage && (
         <div>
