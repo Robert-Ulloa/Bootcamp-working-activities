@@ -1,9 +1,11 @@
 const express = require('express');
 // TODO: Add a comment describing the functionality of this expression
+// importing the Apollo constructor from '@apollo/server' to create an Apollo server instance.
 const { ApolloServer } = require('@apollo/server');
 const { expressMiddleware } = require('@apollo/server/express4');
 
 // TODO: Add a comment describing the functionality of this expression
+// this imports the type  definitions (squema) and resolvers (function that handle graphQL queries).
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 
@@ -16,6 +18,7 @@ const server = new ApolloServer({
 const app = express();
 
 // TODO: Add a comment describing the functionality of this async function
+// the asyng function starts the apollo server and integrateas it with express
 const startApolloServer = async () => {
   await server.start();
   
@@ -33,4 +36,5 @@ const startApolloServer = async () => {
 };
 
 // TODO: Add a comment describing this functionality
+// invokers the startApolloServer funvtion to initialize the Apollo and Express server.
 startApolloServer();
