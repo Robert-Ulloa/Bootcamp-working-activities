@@ -20,29 +20,34 @@ const resolvers = {
 
   Mutation: {
     // TODO: Add comments to each line of code below to describe the functionality below
+        // Mutation to create a new user and sign a JWT token for that user
     addUser: async (parent, args) => {
-      const user = await User.create(args);
-      const token = signToken(user);
+      const user = await User.create(args);  // Create a new user with the provided arguments (name, email, password)
+      const token = signToken(user);   // Sign a JWT token with the user's information
 
       return { token, user };
     },
     // TODO: Add comments to each line of code below to describe the functionality below
+        // Mutation to log in an existing user and sign a JWT token if credentials are valid
     login: async (parent, { email, password }) => {
-      const user = await User.findOne({ email });
+      const user = await User.findOne({ email }); // Find the user by their email
 
       if (!user) {
+                // If no user is found with the given email, throw an authentication error
         throw AuthenticationError
       }
 
-      const correctPw = await user.isCorrectPassword(password);
+      const correctPw = await user.isCorrectPassword(password);   // Check if the provided password matches the user's password
 
       if (!correctPw) {
-        throw AuthenticationError
+                // If the password is incorrect, throw an authentication error
+        throw AuthenticationError 
       }
 
-      const token = signToken(user);
-      return { token, user };
+      const token = signToken(user);  // Sign a JWT token with the user's information
+      return { token, user }; // Return the JWT token and the logged-in user
     },
+        // Mutation to add a new thought to a user
     addThought: async (parent, { thoughtText, thoughtAuthor }) => {
       const thought = await Thought.create({ thoughtText, thoughtAuthor });
 
@@ -53,9 +58,10 @@ const resolvers = {
 
       return thought;
     },
+        // Mutation to add a new comment to a thought
     addComment: async (parent, { thoughtId, commentText, commentAuthor }) => {
       return Thought.findOneAndUpdate(
-        { _id: thoughtId },
+        { _id: thoughtId },   // Find the thought by its ID
         {
           $addToSet: { comments: { commentText, commentAuthor } },
         },
