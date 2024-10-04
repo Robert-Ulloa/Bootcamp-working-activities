@@ -1,28 +1,27 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
-
 import { ADD_COMMENT } from '../../utils/mutations';
 import { QUERY_THOUGHTS } from '../../utils/queries';
 
-// TODO: Comments are not being added to the database the way we expect, and an error is shown on form submit
 const CommentForm = ({ thoughtId }) => {
   const [commentText, setCommentText] = useState('');
   const [characterCount, setCharacterCount] = useState(0);
 
-  const { addComment, loading, error } = useMutation(ADD_COMMENT, {
-    variables: { thoughtId, commentText },
-    refetchQueries: [
-      QUERY_THOUGHTS,
-      'getThoughts'
-    ]
+  // UseMutation should be correctly destructured. It returns a function `addComment` and an object with `loading` and `error`.
+  const [addComment, { loading, error }] = useMutation(ADD_COMMENT, {
+    refetchQueries: [{ query: QUERY_THOUGHTS }],
   });
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const { data } = await addComment();
+      // Triggering the mutation with the required variables
+      await addComment({
+        variables: { thoughtId, commentText },
+      });
 
+      // Reset form on successful submission
       setCommentText('');
       setCharacterCount(0);
     } catch (err) {
@@ -31,9 +30,10 @@ const CommentForm = ({ thoughtId }) => {
   };
 
   const handleChange = (event) => {
-    const { name, value } = event.target;
+    const { value } = event.target;
 
-    if (name === 'commentText' && value.length <= 280) {
+    // Ensure the comment length does not exceed 280 characters
+    if (value.length <= 280) {
       setCommentText(value);
       setCharacterCount(value.length);
     }
@@ -66,8 +66,8 @@ const CommentForm = ({ thoughtId }) => {
         </div>
 
         <div className="col-12 col-lg-3">
-          <button className="btn btn-primary btn-block py-3" type="submit">
-            Add Comment
+          <button className="btn btn-primary btn-block py-3" type="submit" disabled={loading}>
+            {loading ? 'Submitting...' : 'Add Comment'}
           </button>
         </div>
       </form>
