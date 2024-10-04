@@ -1,27 +1,25 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
+
 import { ADD_COMMENT } from '../../utils/mutations';
-import { QUERY_THOUGHTS } from '../../utils/queries';
+import { QUERY_SINGLE_THOUGHT } from '../../utils/queries';
 
 const CommentForm = ({ thoughtId }) => {
   const [commentText, setCommentText] = useState('');
   const [characterCount, setCharacterCount] = useState(0);
 
-  // UseMutation should be correctly destructured. It returns a function `addComment` and an object with `loading` and `error`.
   const [addComment, { loading, error }] = useMutation(ADD_COMMENT, {
-    refetchQueries: [{ query: QUERY_THOUGHTS }],
+    refetchQueries: [{ query: QUERY_SINGLE_THOUGHT, variables: { thoughtId } }],
   });
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      // Triggering the mutation with the required variables
       await addComment({
         variables: { thoughtId, commentText },
       });
 
-      // Reset form on successful submission
       setCommentText('');
       setCharacterCount(0);
     } catch (err) {
@@ -32,7 +30,6 @@ const CommentForm = ({ thoughtId }) => {
   const handleChange = (event) => {
     const { value } = event.target;
 
-    // Ensure the comment length does not exceed 280 characters
     if (value.length <= 280) {
       setCommentText(value);
       setCharacterCount(value.length);
