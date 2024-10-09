@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
-// TODO: Import our type variables
+import { ADD_STUDENT, REMOVE_STUDENT, SET_STUDENT_NAME, SET_STUDENT_MAJOR } from '../utils/actions';
+import { useStudentContext } from '../utils/StudentContext';
 
-// TODO: Import our custom context hook to have access to the global state
 
 export default function StudentList() {
   // The value property from our Student provider is made available from our custom hook. Here we pluck off the student array from our initial state.
@@ -14,8 +14,8 @@ export default function StudentList() {
 
   return (
     <div>
-      {/* // TODO: Refactor to access `students` from our state object */}
-      {students ? (
+      {/* // Refactor to access `students` from our state object */}
+      {state.students ? (
         <>
           <section className="student-list">
             <table>
@@ -29,8 +29,8 @@ export default function StudentList() {
               </thead>
 
               <tbody>
-                {/* // TODO: Refactor to access `students` from our state object */}
-                {students.map((student) => (
+                {/* //Refactor to access `students` from our state object */}
+                {state.students.map((student) => (
                   <tr key={student.id}>
                     <td>{student.id}</td>
                     <td>{student.name}</td>
@@ -39,8 +39,8 @@ export default function StudentList() {
                       <button
                         type="button"
                         onClick={() => {
-                          // TODO: Call dispatch method with an object containing type and payload
-                          // Your code here
+                          // Call dispatch method with an object containing type and payload
+                          dispatch({ type: REMOVE_STUDENT, payload: student.id });
                         }}
                       >
                         <span role="img" aria-label="delete">
@@ -70,8 +70,8 @@ export default function StudentList() {
                 value={state.studentMajor}
               >
                 <option>Choose major...</option>
-                {/* // TODO: Refactor to access `students` from our state object */}
-                {majors.map((major) => (
+                {/* // Refactor to access `students` from our state object */}
+                {state.majors.map((major) => (
                   <option key={major} value={major}>
                     {major}
                   </option>
@@ -80,7 +80,8 @@ export default function StudentList() {
               <button
                 type="button"
                 onClick={() => {
-                  // TODO: Call dispatch method with an object containing type and payload for adding a new student
+                  // Call dispatch method with an object containing type and payload for adding a new student
+                  dispatch({ type: ADD_STUDENT, payload: { name: newStudentName, major: newStudentMajor } });
                 }}
               >
                 Add Student
